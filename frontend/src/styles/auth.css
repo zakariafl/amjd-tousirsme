@@ -1,0 +1,49 @@
+/* Étape 4 : compte utilisateur et modales. Réutilise les variables et boutons App.css. */
+.nav-actions { display:flex; align-items:center; gap:12px; margin-left: auto; }
+.account-trigger { display:inline-flex; align-items:center; gap:7px; border:1px solid #cfebea; border-radius:10px; background:#eff9f8; color:#007d80; padding:11px 13px; font-size:12px; font-weight:800; cursor:pointer; }
+.account-trigger:hover { background:#dff3f0; }
+.nav-account-mobile { display:none; }
+.auth-backdrop, .account-section { position:fixed; inset:0; z-index:80; display:flex; align-items:center; justify-content:center; padding:20px; background:rgba(5,25,37,.72); overflow-y:auto; width:100%; }
+.auth-dialog, .account-card { position:relative; background:white; width:min(460px,100%); border-radius:20px; padding:32px; box-shadow:0 30px 90px rgba(0,0,0,.3); color:var(--ink); }
+.auth-close, .account-close { position:absolute; top:18px; right:18px; border:0; border-radius:10px; width:35px; height:35px; display:grid; place-items:center; background:#eff5f5; color:var(--navy); cursor:pointer; }
+.auth-symbol { display:grid; place-items:center; flex-shrink:0; width:52px; height:52px; border-radius:15px; background:var(--teal-light); color:var(--teal); margin-bottom:20px; }
+.auth-kicker { display:block; color:var(--teal); font-size:11px; font-weight:800; letter-spacing:.14em; margin-bottom:8px; }
+.auth-dialog h2, .account-card h2 { font-family:'Manrope',sans-serif; font-size:clamp(22px,3vw,29px); letter-spacing:-.04em; color:var(--navy); margin:0 25px 10px 0; }
+.auth-subtitle, .account-card p { color:#6e8189; font-size:13px; line-height:1.65; }
+.auth-subtitle { margin:0 0 24px; }
+.auth-form { display:grid; gap:15px; }
+.auth-field { display:flex; flex-direction:column; gap:7px; }
+.auth-field > span:first-child { display:flex; align-items:center; gap:7px; font-size:12px; color:#526671; font-weight:700; }
+.auth-field input { display:block; width:100%; padding:12px 13px; border:1px solid #dbe7e9; border-radius:10px; background:white; color:var(--navy); font-size:14px; }
+.auth-field input:focus { outline:2px solid #9ce5e0; border-color:var(--teal); }
+.auth-password-wrap { display:flex; align-items:center; position:relative; }
+.auth-password-wrap input { padding-right:49px; }
+.auth-password-wrap button { position:absolute; right:5px; width:39px; height:38px; display:grid; place-items:center; border:0; background:transparent; color:#73868e; cursor:pointer; }
+.auth-hint { margin:-6px 0 0; font-size:11px; color:#71858e; line-height:1.5; }
+.auth-error { margin:0; padding:10px 12px; background:#fff0ef; color:#9b322a !important; border-radius:9px; font-size:12px; }
+.auth-submit { width:100%; margin-top:3px; }
+.auth-switch { margin:20px 0 0; text-align:center; font-size:12px; color:#71858e; }
+.auth-switch button { border:0; background:none; padding:5px; color:var(--teal); font-weight:800; cursor:pointer; }
+.account-card { width:min(590px,100%); }
+.account-top { display:flex; gap:16px; align-items:center; padding-right:23px; }
+.account-top .auth-symbol { margin:0; }
+.account-top p { margin:0; overflow-wrap:anywhere; }
+.account-role { display:inline-flex; align-items:center; gap:7px; background:#edf8f5; color:#137d74; padding:10px 13px; border-radius:30px; margin-top:25px; font-size:12px; font-weight:700; }
+.account-info { padding:18px; background:#f5faf9; border-radius:12px; margin:20px 0; }
+.account-admin { margin:24px 0; border-top:1px solid #e5eeee; padding-top:20px; }
+.account-admin h3 { display:flex; gap:8px; align-items:center; font-size:17px; margin:0; color:var(--navy); }
+.account-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:17px; }
+.account-stats > div { background:#f0f8f7; padding:15px; border-radius:12px; display:flex; flex-direction:column; gap:5px; }
+.account-stats strong { font:800 24px 'Manrope',sans-serif; color:#155661; }
+.account-stats span { font-size:11px; color:#56717c; }
+.account-logout { margin-top:15px; background:#f1f4f5; color:#28424e; border:1px solid #e2e7e8; width:100%; }
+.account-logout:hover:not(:disabled) { background:#e5eeee; }
+@media (max-width: 1080px) { .nav-actions { gap:6px; } .main-nav { gap:12px; } }
+@media (max-width: 760px) {
+  .nav-actions { display:none; }
+  .nav-account-mobile { display:flex; align-items:center; gap:8px; background:#e7f7f5; color:#087f7b; border:0; padding:13px; font-size:13px; font-weight:800; border-radius:10px; text-align:left; }
+  .auth-dialog, .account-card { padding:25px 20px; }
+  .account-top { align-items:flex-start; flex-direction:column; }
+  .account-stats { gap:5px; }
+  .account-stats > div { padding:11px; }
+}

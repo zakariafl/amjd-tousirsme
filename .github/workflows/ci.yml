@@ -1,0 +1,49 @@
+name: CI — AMJD Tourisme
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  frontend:
+    name: React build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install locked dependencies
+        working-directory: frontend
+        run: npm ci
+      - name: Production build
+        working-directory: frontend
+        run: npm run build
+
+  api:
+    name: PHP lint, unit and API integration
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and start disposable SQL + PHP
+        run: docker compose --env-file .env.example up -d --build db api
+      - name: PHP syntax
+        run: docker compose --env-file .env.example exec -T api sh -lc 'find . -name "*.php" -print0 | xargs -0 -n1 php -l'
+      - name: PHP unit tests
+        run: docker compose --env-file .env.example exec -T api php tests/unit.php
+      - name: API integration tests
+        run: python3 scripts/smoke_test.py http://127.0.0.1:8000
+      - name: Show PHP / MySQL logs if failed
+        if: failure()
+        run: docker compose --env-file .env.example logs --tail=100 db api
+      - name: Stop disposable containers
+        if: always()
+        run: docker compose --env-file .env.example down -v

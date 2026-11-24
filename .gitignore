@@ -1,0 +1,30 @@
+# Secrets and machine-specific configuration
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
+
+# JavaScript / Vite
+**/node_modules/
+**/dist/
+**/coverage/
+**/.vite/
+
+# PHP and tooling
+**/vendor/
+*.log
+php_errors.log
+
+# IDE / OS / Python tests
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Keep the reproducible lock file tracked!
+# frontend/package-lock.json must be committed.
